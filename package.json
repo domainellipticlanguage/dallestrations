@@ -1,0 +1,32 @@
+{
+  "name": "dallestrations2",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n api,web \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "tsx watch --env-file=.env server.ts",
+    "dev:web": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "typecheck": "tsc --noEmit && npm run typecheck --prefix frontend",
+    "deploy": "npm run build && npx sst deploy --stage production"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.800.0",
+    "@aws-sdk/client-s3": "^3.800.0",
+    "@aws-sdk/lib-dynamodb": "^3.800.0",
+    "@hono/node-server": "^1.13.0",
+    "hono": "^4.6.0",
+    "openai": "^4.103.0",
+    "replicate": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/pg": "^8.20.0",
+    "concurrently": "^9.2.1",
+    "pg": "^8.22.0",
+    "sst": "^3.19.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.3"
+  }
+}
